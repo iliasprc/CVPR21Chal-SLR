@@ -1,17 +1,22 @@
-Isolated Sign Language Recognition with Multi-modal Models
+Skeleton Aware Multi-modal Sign Language Recognition
 =========
-By [Songyao Jiang](https://www.songyaojiang.com/), Bin Sun, [Lichen Wang](https://sites.google.com/site/lichenwang123/), [Yue Bai](https://yueb17.github.io/), [Kunpeng Li](https://kunpengli1994.github.io/) and [Yun Fu](http://www1.ece.neu.edu/~yunfu/).
+By [Songyao Jiang](https://www.songyaojiang.com/), [Bin Sun](https://github.com/Sun1992/), [Lichen Wang](https://sites.google.com/site/lichenwang123/), [Yue Bai](https://yueb17.github.io/), [Kunpeng Li](https://kunpengli1994.github.io/) and [Yun Fu](http://www1.ece.neu.edu/~yunfu/).
 
 [Smile Lab @ Northeastern University](https://web.northeastern.edu/smilelab/)
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/skeleton-based-sign-language-recognition/sign-language-recognition-on-autsl)](https://paperswithcode.com/sota/sign-language-recognition-on-autsl?p=skeleton-based-sign-language-recognition)
 ----
-This repo contains the code to reproduce our results on [2021 Looking at People Large Scale Signer Independent Isolated SLR CVPR Challenge](http://chalearnlap.cvc.uab.es/challenge/43/description/).
+This repo contains the official code of [Skeleton Aware Multi-modal Sign Language Recognition (SAM-SLR)](https://arxiv.org/abs/2103.08833) that ranked 1st in [CVPR 2021 Challenge: Looking at People Large Scale Signer Independent Isolated Sign Language Recognition](http://chalearnlap.cvc.uab.es/challenge/43/description/). 
 
-In this repo, we provide trained models and a step-by-step instruction to train, test our models and reproduce our final results. We also provide a docker file for quick deployment of our environment setup. 
-We are going to submit a paper to the workshop associated with this challenge to provide more details about our work. Please consider [cite](#Citation) our paper if you find this repo useful in your research.
+Our preprint paper has been released on [arXiv](https://arxiv.org/abs/2103.08833). Please [cite](#Citation) our paper if you find this repo useful in your research.
+
+<img src="img/sam-slr.jpg" width = "300">
 
 ## News
+
+[2021/03/24] A preprint version of our paper is released [here](https://arxiv.org/abs/2103.08833).
+
+[2021/03/20] Our work has been verified and [announced](https://competitions.codalab.org/forums/24597/5355/) by the organizers as the 1st place winner of the challenge!
 
 [2021/03/15] The code is released to public on [GitHub](https://github.com/jackyjsy/CVPR21Chal-SLR).
 
@@ -84,13 +89,13 @@ To test our pretrained model, please put them under each code folders and run th
 For a step-by-step instruction, please see [reproduce.md](reproduce.md).
 
 ### Skeleton Keypoints
-Skeleton modality can be trained, finetuned and tested using the code in GCN/ folder. Please follow the [GCN/readme.md](GCN/readme.md) instruction to prepare skeleton data into four streams (joint, bone, joint_motion, bone motion).
+Skeleton modality can be trained, finetuned and tested using the code in SL-GCN/ folder. Please follow the [SL-GCN/readme.md](SL-GCN/readme.md) instruction to prepare skeleton data into four streams (joint, bone, joint_motion, bone motion).
 
 Basic usage:
 
     python main.py --config /path/to/config/file
 
-To train, finetune and test our models, please change the config path to corresponding config files. Detailed instruction can be found in [GCN/readme.md](GCN/readme.md)
+To train, finetune and test our models, please change the config path to corresponding config files. Detailed instruction can be found in [SL-GCN/readme.md](SL-GCN/readme.md)
 
 ### Skeleton Feature
 For the skeleton feature, we propose a [Separable Spatial-Temporal Convolution Network (SSTCN)](https://github.com/Sun1992/SSTCN-for-SLR) to capture spatio-temporal information from those features.
@@ -150,7 +155,7 @@ For both RGB and RGBD track, the tested results of all modalities need to be ens
 
    b. Copy all the test results to ensemble folder and rename them as their modality names.
 
-   c. Ensemble GCN results from joint, bone, joint motion, bone motion streams in gcn/ .
+   c. Ensemble SL-GCN results from joint, bone, joint motion, bone motion streams in gcn/ .
 
         python ensemble_wo_val.py; python ensemble_finetune.py
 
@@ -178,18 +183,18 @@ This project is released under the Creative Commons Zero v1.0 Universal license 
 * Published versions (changed or unchanged) must include a reference to the origin of the code.
 
 ## Citation
-If you find this project useful in your research, please cite our preprint fact sheet version:
+If you find this project useful in your research, please cite our preprint version:
 
 ```
 @article{jiang2021skeleton,
-  title={Skeleton Based Sign Language Recognition Using Whole-body Keypoints},
+  title={Skeleton Aware Multi-modal Sign Language Recognition},
   author={Jiang, Songyao and Sun, Bin and Wang, Lichen and Bai, Yue and Li, Kunpeng and Fu, Yun},
   journal={arXiv preprint arXiv:2103.08833},
   year={2021}
 }
 ```
 
-The workshop version of our paper will be updated here soon.
+Our workshop version will be updated here soon.
 
 ## Reference
 
